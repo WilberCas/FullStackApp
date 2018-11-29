@@ -12,9 +12,7 @@ class App extends Component {
                         <li><Link to="/">Home</Link></li>
                     </ul>
                 </nav>
-                <Switch>
                 <Route path="/courses" component={Course}/>
-                </Switch>
             </div>
         )
     }
