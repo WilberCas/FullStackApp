@@ -7,6 +7,7 @@ router.get('/', (req, res) => {
     courseModel.find({}, (err, courses) =>{
         // If error return a 500. As well as return json message
         if(err) res.status(500).json({error: "Not courses found!"});
+        console.log(courses);
         res.json(courses);
     })
 });

@@ -3,29 +3,19 @@ import React, {Component} from 'react';
 class Course extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            courses: null
-        }
-        this.tableOfCourses = this.tableOfCourses.bind(this);
+        this.state = { edit: false}
     }
-    componentDidMount() {
-        fetch('http://localhost:3001/courses')
-        .then(response => response.json())
-        .then(data => this.setState({courses: data}))
+    editButton(){
+        this.setState({edit: true})
     }
-    tableOfCourses() {
-        let {courses = []} = this.state;
-        let elementCourses = [];
-        courses.forEach((course) => {
-            let eachCourse = <li id={course._id}>{course.name}</li>;
-            elementCourses.push(eachCourse);
-        })
-        return elementCourses;
-    }
-    render() {
+    render() { 
+        const {edit} = this.state;
         return(
-            <div>
-                <ul>{this.tableOfCourses}</ul>
+            <div id={this.props._id} className="course" key={this.props._id}>
+            {this.props.name}
+                <div id="edit">
+                    <button onClick={this.editButton}>Edit</button>
+                </div>
             </div>
         )
     }
