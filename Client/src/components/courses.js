@@ -17,7 +17,7 @@ class Courses extends Component {
         let {courses} = this.state;
         let elementCourses = [];
         courses.forEach((course) => {
-            elementCourses.push(<Course {...course}/>)
+            elementCourses.push(<Course {...course} key={course._id}/>)
         })
         return elementCourses;
     }
