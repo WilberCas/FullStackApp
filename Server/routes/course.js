@@ -7,7 +7,6 @@ router.get('/', (req, res) => {
     courseModel.find({}, (err, courses) =>{
         // If error return a 500. As well as return json message
         if(err) res.status(500).json({error: "Not courses found!"});
-        console.log(courses);
         res.json(courses);
     })
 });
@@ -38,7 +37,7 @@ router.post('/', (req, res) =>{
 /* DELETE a course */
 router.delete('/:id', (req, res) => {
     if(req.params.id) {
-        CourseModel.findByIdAndRemove(req.params.id, (err, course) => {
+        courseModel.findByIdAndRemove(req.params.id, (err, course) => {
             if(err) res.status(500).json({status:500, success: false, err})
             res.json({success: true, delete: course})
         })
@@ -49,12 +48,15 @@ router.delete('/:id', (req, res) => {
 /* UPDATE a course */
 router.put('/:id', (req, res) => {
     if(req.params.id) {
-        CourseModel.findByIdAndUpdate(req.params.id,{name: req.body.name},  (err, course) => {
-            if(err) res.status(500).json({status:500, success: false, err})
-            res.json({success: true, course})
-        })
+        let {_update} = courseModel.findByIdAndUpdate(req.params.id,{name: req.body.name},  (err, course) => {
+            if(err) res.status(500);
+        });
+        res.send({course:_update});
+        
     }
-    res.status(400).json({status: 400, success: false});
+    else{
+        res.status(400);
+    }
 })
 
 module.exports = router;
