@@ -35,6 +35,7 @@ h1 {
 .courses {   
     display:flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 .course{
     border: 2px solid red;

@@ -26,7 +26,7 @@ router.post('/', (req, res) =>{
     let newCourse = new courseModel({
         name: req.body.name
     });
-    courseModel.save( (err) =>{
+    newCourse.save( (err) =>{
         if(err) res.status(500).json({error: err});
         res.json({
             message: "Course Saved",
